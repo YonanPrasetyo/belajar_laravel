@@ -16,3 +16,37 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("/about", function (){
+    return 'Yonan Prasetyo';
+});
+
+// Route::get("/contact", function (){
+//     return view('contact');
+// });
+
+Route::view("/contact","contact",["name"=>"cara fajar","phone"=>"0857xxxxxxxxx"]);
+
+Route::redirect("/halo","halosaya");
+
+// Route::get('/product/{id}',function($id){
+//     return 'ini adalah produk dengan id '.$id;
+// });
+
+Route::get('/product/{id}',function($id){
+    return view('product.detail',['id' => $id]);
+});
+
+Route::prefix('admin')->group(function(){
+    Route::get('/profile-admin',function(){
+        return 'profile admin';
+    }); 
+
+    Route::get('/about-admin',function(){
+        return 'about admin';
+    }); 
+
+    Route::get('/contact-admin',function(){
+        return 'contact admin';
+    }); 
+});
