@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home',[
+        'name'=> "Yonan Prasetyo",
+        'role'=> "Staff",
+        'buah'=> ['pisang', 'apel', 'jeruk', 'semangka', 'kiwi']
+    ]);
 });
