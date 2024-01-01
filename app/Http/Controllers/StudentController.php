@@ -13,39 +13,60 @@ class StudentController extends Controller
         // $student = Student::all();
         // return view('student', ['studentList' => $student]);
 
-        // CRUD query builder & eloquent
-        // query builder
-        // $student = DB::table('students')->get();
-        // DB::table('students')->insert([
-        //     'name' => 'query builder',
-        //     'gender' => 'L',
-        //     'nis' => '000000001',
-        //     'class_id' => 1
-        // ]);
-        // DB::table('students')->where('id', 26)->update([
-        //     'name' => 'query builder 2',
-        //     'class_id' => 3
-        // ]);
-        // DB::table('students')->where('id', 26)->delete();
-        // ---------------------------------
+        $nilai = [9,6,3,7,3,7,5,2,7,4,8,2,6,6,3,8,10];
 
+        //php biasa
+        // $countNilai = count($nilai);
+        // $totalNilai = array_sum($nilai);
+        // $nilaiRataRata = $totalNilai / $countNilai;
 
-        // eloquent
-        // $student = Student::all();
-        // Student::create([
-            //     'name' => 'eloquent',
-            //     'gender' => 'P',
-            //     'nis' => '000000002',
-            //     'class_id' => 2
-            // ]);
-            // Student::find(27)->update([
-        //     'name' => 'eloquent 2',
-        //     'class_id' => 3
-        // ]);
-        // Student::find(27)->delete();
-        // ---------------------------------
+        // collection
+        // $nilaiRataRata = collect($nilai)->avg();
 
+        // dd($nilaiRataRata);
+        // --------------------------------------------------------------
 
-        // dd($student);
+        // --- contains --- cek apakah sebuah array memiliki sesuatu
+        // $contains = collect($nilai)->contains(function($value){
+        //     return $value < 2;
+        // });
+
+        // dd($contains);
+
+        // --- diff ---
+        $restaurantA = ["burger", "siomay", "pizza", "spaghetti", "makaroni", "martabak", "bakso"];
+        $restaurantB = ["pizza", "fried chicken", "martabak", "sayur asem", "pecel lele", "bakso"];
+
+        // $menuRestoA = collect($restaurantA)->diff($restaurantB); // yang ada di A tapi tidak ada di B
+        // $menuRestoB = collect($restaurantB)->diff($restaurantA); // yang ada di B tapi tidak ada di A
+
+        // dd($menuRestoA, $menuRestoB);
+
+        // --- filter --- menyaring data
+        // $filter = collect($nilai)->filter(function($value){
+        //     return $value > 7;
+        // })->all();
+
+        // dd($filter);
+
+        // --- pluck --- mengambil data tertentu
+        $biodata = [
+            ['nama' => 'yonan', 'umur' => 19],
+            ['nama' => 'alfito', 'umur' => 21],
+            ['nama' => 'ego', 'umur' => 18],
+            ['nama' => 'eval', 'umur' => 18],
+        ];
+
+        // $pluck = collect($biodata)->pluck('nama');
+
+        // dd($pluck);
+
+        // --- map ---
+        $map = collect($nilai)->map(function ($value){
+            return $value * 2;
+            // looping
+        })->all();
+
+        dd($nilai, $map);
     }
 }
