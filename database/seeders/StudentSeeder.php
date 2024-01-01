@@ -15,7 +15,7 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
+        /* Schema::disableForeignKeyConstraints();
         Student::truncate();
         Schema::enableForeignKeyConstraints();
 
@@ -35,6 +35,8 @@ class StudentSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ]);
-        }
+        } */
+
+        Student::factory(20)->create();
     }
 }
