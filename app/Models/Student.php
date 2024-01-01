@@ -15,5 +15,8 @@ class Student extends Model
     // protected $keyType = 'string'; --gak perlu karena primary keynya tipe integer
     // public $timestamps = false; -- gak perlu karena sudah ada created_at dan updated_at pada tabel
 
-    
+    protected $fillable = [
+        'name', 'gender', 'nis', 'class_id'
+    ];
+
 }
