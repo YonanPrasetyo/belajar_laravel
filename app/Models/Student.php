@@ -19,4 +19,8 @@ class Student extends Model
         'name', 'gender', 'nis', 'class_id'
     ];
 
+    public function class()
+    {
+        return $this->belongsTo(ClassRoom::class);
+    }
 }
