@@ -11,13 +11,20 @@
         <tr>
             <th>No.</th>
             <th>Name</th>
+            <th>Students</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($classList as $data)
             <tr>
-                <th>{{$loop -> iteration}}</th>
-                <th>{{$data -> name}}</th>
+                <td>{{$loop -> iteration}}</td>
+                <td>{{$data -> name}}</td>
+                <td>
+                    @foreach ($data -> students as $student)
+                        {{$loop -> iteration}}.
+                        {{$student['name']}} <br>
+                    @endforeach
+                </td>
             </tr>
         @endforeach
     </tbody>
