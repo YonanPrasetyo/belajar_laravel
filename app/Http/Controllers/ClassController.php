@@ -14,7 +14,7 @@ class ClassController extends Controller
         // $class = ClassRoom::all();
         // --------------------
         // Eager Load (recomended)
-        $class = ClassRoom::with('students')->get();
+        $class = ClassRoom::with('students', 'homeroomTeacher')->get();
 
         // pakai liblary clockwork
         return view('classroom', ['classList' => $class]);
