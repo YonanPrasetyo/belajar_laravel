@@ -16,6 +16,7 @@
             <th>nis</th>
             <th>class_id</th>
             <th>kelas</th>
+            <th>Ekstrakulikuler</th>
         </tr>
     </thead>
     <tbody>
@@ -27,6 +28,12 @@
             <td>{{$data -> nis}}</td>
             <td>{{$data -> class_id}}</td>
             <td>{{$data -> class -> name}}</td>
+            <td>
+                @foreach ($data['extracurriculars'] as $value)
+                    {{$loop -> iteration}}.
+                    {{$value['name']}} <br>
+                @endforeach
+            </td>
         </tr>
         @endforeach
     </tbody>
