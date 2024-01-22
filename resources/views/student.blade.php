@@ -17,6 +17,7 @@
             <th>class_id</th>
             <th>kelas</th>
             <th>Ekstrakulikuler</th>
+            <th>Homeroom Teacher</th>
         </tr>
     </thead>
     <tbody>
@@ -34,6 +35,7 @@
                     {{$value['name']}} <br>
                 @endforeach
             </td>
+            <td>{{$data -> class -> homeroomTeacher -> name}}</td>
         </tr>
         @endforeach
     </tbody>

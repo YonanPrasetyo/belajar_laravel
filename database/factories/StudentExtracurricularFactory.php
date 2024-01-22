@@ -17,7 +17,7 @@ class StudentExtracurricularFactory extends Factory
      */
     public function definition(): array
     {
-        for ($i=0; $i < 60; $i++) {
+        for ($i=0; $i < 20; $i++) {
             $data[$i]=$i+1;
         }
         return [
