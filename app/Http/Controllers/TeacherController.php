@@ -18,4 +18,13 @@ class TeacherController extends Controller
             ->findOrFail($id);
         return view('teacher-detail', ['teacher' => $teacher]);
     }
+
+    public function create(){
+        return view('teacher-add');
+    }
+
+    public function store(Request $request){
+        $teacher = Teacher::create($request->all());
+        return redirect('/teacher');
+    }
 }

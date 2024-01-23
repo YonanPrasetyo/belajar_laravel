@@ -10,6 +10,10 @@ class ClassRoom extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name', 'teacher_id'
+    ];
+
     protected $table = 'class';
 
     public function students()

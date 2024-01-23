@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Teacher;
 use App\Models\ClassRoom;
+use Illuminate\Http\Request;
 
 
 class ClassController extends Controller
@@ -25,5 +26,15 @@ class ClassController extends Controller
             with(['students', 'homeroomTeacher'])
             ->findOrFail($id);
         return view('classroom-detail', ['class' => $class]);
+    }
+
+    public function create(){
+        $teacher = Teacher::select('id', 'name')->whereNotIn('id', ClassRoom::select('teacher_id'))->get();
+        return view('classroom-add', ['teacher' => $teacher]);
+    }
+
+    public function store(Request $request){
+        $classroom = ClassRoom::create($request->all());
+        return redirect('/class');
     }
 }

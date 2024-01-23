@@ -4,7 +4,7 @@
 
 @section('content')
 <h1>Ini Halaman Student</h1>
-<h3>Student List</h3>
+<h3>Student List <a href="/student-add" class="btn btn-primary">Add Data</a></h3>
 
 
 <table class = "table">

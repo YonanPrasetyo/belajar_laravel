@@ -18,4 +18,13 @@ class ExtracurricularController extends Controller
             ->findOrFail($id);
         return view('extracurricular-detail', ['extracurricular' => $extracurricular]);
     }
+
+    public function create(){
+        return view('extracurricular-add');
+    }
+
+    public function store(Request $request){
+        $extracurricular = Extracurricular::create($request-> all());
+        return redirect('/extracurricular');
+    }
 }
