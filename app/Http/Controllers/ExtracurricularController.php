@@ -8,7 +8,14 @@ use App\Models\Extracurricular;
 class ExtracurricularController extends Controller
 {
     public function index(){
-        $extracurricular = Extracurricular::with('students')->get();
+        $extracurricular = Extracurricular::get();
         return view('extracurricular', ['extracurricularList' => $extracurricular]);
+    }
+
+    public function show($id){
+        $extracurricular = Extracurricular::
+            with('students')
+            ->findOrFail($id);
+        return view('extracurricular-detail', ['extracurricular' => $extracurricular]);
     }
 }

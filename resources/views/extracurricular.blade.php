@@ -11,7 +11,7 @@
             <tr>
                 <th>No</th>
                 <th>Extracurricular</th>
-                <th>Anggota</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,12 +19,7 @@
             <tr>
                 <td>{{$loop -> iteration}}</td>
                 <td>{{$item -> name}}</td>
-                <td>
-                    @foreach ($item->students as $data)
-                        {{$loop -> iteration}}.
-                        {{$data -> name}} <br>
-                    @endforeach
-                </td>
+                <td><a href="/extracurricular-detail/{{$item -> id}}" class="btn btn-primary">detail</a></td>
             </tr>
             @endforeach
         </tbody>

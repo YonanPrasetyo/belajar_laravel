@@ -14,10 +14,7 @@
             <th>Nama</th>
             <th>gender</th>
             <th>nis</th>
-            <th>class_id</th>
-            <th>kelas</th>
-            <th>Ekstrakulikuler</th>
-            <th>Homeroom Teacher</th>
+            <th>action</th>
         </tr>
     </thead>
     <tbody>
@@ -27,17 +24,9 @@
             <td>{{$data -> name}}</td>
             <td>{{$data -> gender}}</td>
             <td>{{$data -> nis}}</td>
-            <td>{{$data -> class_id}}</td>
-            <td>{{$data -> class -> name}}</td>
-            <td>
-                @foreach ($data['extracurriculars'] as $value)
-                    {{$loop -> iteration}}.
-                    {{$value['name']}} <br>
-                @endforeach
-            </td>
-            <td>{{$data -> class -> homeroomTeacher -> name}}</td>
+            <td><a href="/student/{{$data -> id}}" class="btn btn-primary">detail</a></td>
         </tr>
-        @endforeach
+    @endforeach
     </tbody>
 </table>
 
