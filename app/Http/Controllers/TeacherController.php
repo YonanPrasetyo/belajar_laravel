@@ -11,4 +11,20 @@ class TeacherController extends Controller
         $teacher = Teacher::all();
         return view('teacher', ['teacherList' => $teacher]);
     }
+
+    public function show($id){
+        $teacher = Teacher::
+            with('class.students')
+            ->findOrFail($id);
+        return view('teacher-detail', ['teacher' => $teacher]);
+    }
+
+    public function create(){
+        return view('teacher-add');
+    }
+
+    public function store(Request $request){
+        $teacher = Teacher::create($request->all());
+        return redirect('/teacher');
+    }
 }

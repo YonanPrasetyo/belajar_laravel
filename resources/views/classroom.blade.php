@@ -4,15 +4,14 @@
 
 @section('content')
 <h1>Ini Halaman Class</h1>
-<h3>Class List</h3>
+<h3>Class List <a href="/classroom-add" class="btn btn-primary">Add Data</a></h3>
 
 <table class="table">
     <thead>
         <tr>
             <th>No.</th>
             <th>Name</th>
-            <th>Students</th>
-            <th>Homeroom Teacher</th>
+            <th>action</th>
         </tr>
     </thead>
     <tbody>
@@ -20,15 +19,7 @@
             <tr>
                 <td>{{$loop -> iteration}}</td>
                 <td>{{$data -> name}}</td>
-                <td>
-                    @foreach ($data -> students as $student)
-                        {{$loop -> iteration}}.
-                        {{$student['name']}} <br>
-                    @endforeach
-                </td>
-                <td>
-                    {{$data -> homeroomTeacher['name']}}
-                </td>
+                <td><a href="/class-detail/{{$data -> id}}" class="btn btn-primary">detail</a></td>
             </tr>
         @endforeach
     </tbody>
