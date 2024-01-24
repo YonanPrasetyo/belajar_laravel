@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 
 class ClassController extends Controller
@@ -35,6 +36,12 @@ class ClassController extends Controller
 
     public function store(Request $request){
         $classroom = ClassRoom::create($request->all());
+
+        if($classroom){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'add new class succes!');
+        }
+
         return redirect('/class');
     }
 
@@ -48,6 +55,12 @@ class ClassController extends Controller
         $class = ClassRoom::findOrFail($id);
 
         $class -> update($request -> all());
+
+        if($class){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'edit data class succes!');
+        }
+
         return redirect('/class');
     }
 }
