@@ -65,4 +65,28 @@ class ClassController extends Controller
 
         return redirect('/class');
     }
+
+    public function delete($id){
+        $class = ClassRoom::findOrFail($id);
+        return view('classroom-delete', ['class' => $class]);
+    }
+
+    public function destroy($id){
+        $deletedClass = ClassRoom::findOrFail($id);
+
+        if ($deletedClass->students()->count() > 0) {
+            Session::flash('status', 'succes');
+            Session::flash('message', 'hapus data class GAGAL!');
+            return redirect('/class');
+        }
+        else {
+            $deletedClass -> delete();
+
+        if($deletedClass){
+            Session::flash('status', 'fail');
+            Session::flash('message', 'hapus data class succes!');
+        }
+        return redirect('/class');
+        }
+    }
 }

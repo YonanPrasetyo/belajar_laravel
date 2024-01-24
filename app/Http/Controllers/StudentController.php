@@ -7,6 +7,7 @@ use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use App\Models\Extracurricular;
 use Illuminate\Support\Facades\DB;
+use App\Models\StudentExtracurricular;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\StudentEditRequest;
 use App\Http\Requests\StudentCreateRequest;
@@ -57,6 +58,29 @@ class StudentController extends Controller
         if($student){
             Session::flash('status', 'succes');
             Session::flash('message', 'edit data student succes!');
+        }
+
+        return redirect('/students');
+    }
+
+    public function delete($id){
+        $student = Student::findOrFail($id);
+        return view('student-delete', ['student' => $student]);
+    }
+
+    public function destroy($id){
+        $deletedStudent = Student::findOrFail($id);
+        $deletedStudentExtracurricular = StudentExtracurricular::whereIn('student_id', [$id])->get();
+
+        foreach ($deletedStudentExtracurricular as $data) {
+            StudentExtracurricular::where('student_id', $id)->delete();
+        };
+        $deletedStudent -> delete();
+
+
+        if($deletedStudent){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'delete data student succes!');
         }
 
         return redirect('/students');
