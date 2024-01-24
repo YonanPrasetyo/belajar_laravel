@@ -19,7 +19,10 @@
                 <tr>
                     <td>{{$loop -> iteration}}</td>
                     <td>{{$data -> name}}</td>
-                    <td><a href="/teacher-detail/{{$data -> id}}" class="btn btn-primary">detail</a></td>
+                    <td>
+                        <a href="/teacher-detail/{{$data -> id}}" class="btn btn-primary">detail</a>
+                        <a href="/teacher-edit/{{$data -> id}}" class="btn btn-primary">edit</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
