@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use App\Models\ClassRoom;
 use Illuminate\Http\Request;
+use App\Http\Requests\ClassEditRequest;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\ClassCreateRequest;
 
 
 class ClassController extends Controller
@@ -34,7 +36,7 @@ class ClassController extends Controller
         return view('classroom-add', ['teacher' => $teacher]);
     }
 
-    public function store(Request $request){
+    public function store(ClassCreateRequest $request){
         $classroom = ClassRoom::create($request->all());
 
         if($classroom){
@@ -51,7 +53,7 @@ class ClassController extends Controller
         return view('classroom-edit', ['class' => $class, 'teacher' => $teacher]);
     }
 
-    public function update(Request $request, $id){
+    public function update(ClassEditRequest $request, $id){
         $class = ClassRoom::findOrFail($id);
 
         $class -> update($request -> all());
