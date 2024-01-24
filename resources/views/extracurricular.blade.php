@@ -19,7 +19,11 @@
             <tr>
                 <td>{{$loop -> iteration}}</td>
                 <td>{{$item -> name}}</td>
-                <td><a href="/extracurricular-detail/{{$item -> id}}" class="btn btn-primary">detail</a></td>
+                <td>
+                    <a href="/extracurricular-detail/{{$item -> id}}" class="btn btn-primary">detail</a>
+                    <a href="/extracurricular-edit/{{$item -> id}}" class="btn btn-primary">edit</a>
+
+                </td>
             </tr>
             @endforeach
         </tbody>
