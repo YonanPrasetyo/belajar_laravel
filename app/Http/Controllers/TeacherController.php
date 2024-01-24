@@ -53,4 +53,30 @@ class TeacherController extends Controller
         $teacher -> update($request -> all());
         return redirect('/teacher');
     }
+
+    public function delete($id){
+        $teacher = Teacher::findOrFail($id);
+        return view('teacher-delete', ['teacher' => $teacher]);
+    }
+
+    public function destroy($id){
+        $deletedTeacher = Teacher::findOrFail($id);
+
+        if ($deletedTeacher->class() != NULL) {
+            Session::flash('status', 'succes');
+            Session::flash('message', 'hapus data teacher GAGAL!');
+            return redirect('/teacher');
+        } else {
+            $deletedTeacher -> delete();
+            if($deletedTeacher){
+                Session::flash('status', 'succes');
+                Session::flash('message', 'hapus data teacher succes!');
+            }
+            return redirect('/teacher');
+        }
+
+
+
+
+    }
 }

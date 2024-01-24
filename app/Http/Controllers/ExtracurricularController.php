@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Extracurricular;
+use App\Models\StudentExtracurricular;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\ExtracurricularEditRequest;
 use App\Http\Requests\ExtracurricularCreateRequest;
@@ -52,6 +53,27 @@ class ExtracurricularController extends Controller
             Session::flash('message', 'edit data extracurricular succes!');
         }
 
+        return redirect('/extracurricular');
+    }
+
+    public function delete($id){
+        $extracurricular = Extracurricular::findOrFail($id);
+        return view('extracurricular-delete', ['extracurricular' => $extracurricular]);
+    }
+
+    public function destroy($id){
+        $deletedExtracurricular = Extracurricular::findOrFail($id);
+        $deletedStudentExtracurricular = StudentExtracurricular::whereIn('extracurricular_id', [$id])->get();
+
+        foreach ($deletedStudentExtracurricular as $data) {
+            StudentExtracurricular::where('extracurricular_id', $id)->delete();
+        }
+        $deletedExtracurricular->delete();
+
+        if($deletedExtracurricular){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'hapus data extracurricular succes!');
+        }
         return redirect('/extracurricular');
     }
 }

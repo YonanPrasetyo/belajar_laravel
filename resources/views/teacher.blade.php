@@ -29,6 +29,7 @@
                     <td>
                         <a href="/teacher-detail/{{$data -> id}}" class="btn btn-primary">detail</a>
                         <a href="/teacher-edit/{{$data -> id}}" class="btn btn-primary">edit</a>
+                        <a href="/teacher-delete/{{$data -> id}}" class="btn btn-danger">delete</a>
                     </td>
                 </tr>
             @endforeach

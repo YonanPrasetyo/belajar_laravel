@@ -29,7 +29,7 @@
                 <td>
                     <a href="/extracurricular-detail/{{$item -> id}}" class="btn btn-primary">detail</a>
                     <a href="/extracurricular-edit/{{$item -> id}}" class="btn btn-primary">edit</a>
-
+                    <a href="/extracurricular-delete/{{$item -> id}}" class="btn btn-danger">delete</a>
                 </td>
             </tr>
             @endforeach
