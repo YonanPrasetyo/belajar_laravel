@@ -4,7 +4,14 @@
 
 @section('content')
     <h1>Ini Halaman Teacher</h1>
-    <h3>Teacher List <a href="/teacher-add" class="btn btn-primary">Add Data</a></h3>
+    <strong>Teacher List</strong>
+    <a href="/teacher-add" class="btn btn-primary">Add Data</a>
+
+@if (Session::has('status'))
+    <div class="alert alert-success" role="alert">
+        {{Session::get('message')}}
+    </div>
+@endif
 
     <table class="table">
         <thead>

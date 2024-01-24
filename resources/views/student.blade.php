@@ -4,8 +4,14 @@
 
 @section('content')
 <h1>Ini Halaman Student</h1>
-<h3>Student List <a href="/student-add" class="btn btn-primary">Add Data</a></h3>
+<strong>Student List</strong>
+<a href="/student-add" class="btn btn-primary">Add Data</a>
 
+@if (Session::has('status'))
+    <div class="alert alert-success" role="alert">
+        {{Session::get('message')}}
+    </div>
+@endif
 
 <table class = "table">
     <thead>

@@ -7,6 +7,7 @@ use App\Models\ClassRoom;
 use Illuminate\Http\Request;
 use App\Models\Extracurricular;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -38,6 +39,12 @@ class StudentController extends Controller
         // $student->save();
 
         $student = Student::create($request->all());
+
+        if($student){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'add new student succes!');
+        }
+
         return redirect('/students');
     }
 
@@ -51,6 +58,12 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
 
         $student -> update($request -> all());
+
+        if($student){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'edit data student succes!');
+        }
+
         return redirect('/students');
     }
 }

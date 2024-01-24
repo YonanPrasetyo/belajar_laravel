@@ -4,7 +4,14 @@
 
 @section('content')
     <h1>Ini Halaman Extracurricular</h1>
-    <h3>Extracurricular List <a href="/extracurricular-add" class="btn btn-primary">Add Data</a></h3>
+    <strong>Extracurricular List</strong>
+    <a href="/extracurricular-add" class="btn btn-primary">Add Data</a>
+
+@if (Session::has('status'))
+    <div class="alert alert-success" role="alert">
+        {{Session::get('message')}}
+    </div>
+@endif
 
     <table class="table">
         <thead>
