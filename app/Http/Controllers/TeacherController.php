@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\TeacherEditRequest;
+use App\Http\Requests\TeacherCreateRequest;
 
 class TeacherController extends Controller
 {
@@ -24,7 +26,7 @@ class TeacherController extends Controller
         return view('teacher-add');
     }
 
-    public function store(Request $request){
+    public function store(TeacherCreateRequest $request){
         $teacher = Teacher::create($request->all());
 
         if($teacher){
@@ -40,7 +42,7 @@ class TeacherController extends Controller
         return view('teacher-edit', ['teacher' => $teacher]);
     }
 
-    public function update(Request $request, $id){
+    public function update(TeacherEditRequest $request, $id){
         $teacher = Teacher::findOrFail($id);
 
         if($teacher){

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\Extracurricular;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\StudentEditRequest;
+use App\Http\Requests\StudentCreateRequest;
 
 class StudentController extends Controller
 {
@@ -30,14 +32,7 @@ class StudentController extends Controller
         return view('student-add', ['class' => $class, 'extracurricular' => $extracurricular]);
     }
 
-    public function store(Request $request){
-        // $student = new Student;
-        // $student -> name = $request -> name;
-        // $student -> gender = $request -> gender;
-        // $student -> nis = $request -> nis;
-        // $student -> class_id = $request -> class_id;
-        // $student->save();
-
+    public function store(StudentCreateRequest $request){
         $student = Student::create($request->all());
 
         if($student){
@@ -54,7 +49,7 @@ class StudentController extends Controller
         return view('student-edit', ['student' => $student, 'class' => $class]);
     }
 
-    public function update(Request $request, $id){
+    public function update(StudentEditRequest $request, $id){
         $student = Student::findOrFail($id);
 
         $student -> update($request -> all());
