@@ -6,6 +6,7 @@
     <h1>Ini Halaman Extracurricular</h1>
     <strong>Extracurricular List</strong>
     <a href="/extracurricular-add" class="btn btn-primary">Add Data</a>
+    <a href="/extracurricular-deleted" class="btn btn-primary">Show Deleted Data</a>
 
 @if (Session::has('status'))
     <div class="alert alert-success" role="alert">

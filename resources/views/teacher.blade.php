@@ -6,6 +6,7 @@
     <h1>Ini Halaman Teacher</h1>
     <strong>Teacher List</strong>
     <a href="/teacher-add" class="btn btn-primary">Add Data</a>
+    <a href="/teacher-deleted" class="btn btn-primary">Show Deleted Data</a>
 
 @if (Session::has('status'))
     <div class="alert alert-success" role="alert">

@@ -63,16 +63,27 @@ class ExtracurricularController extends Controller
 
     public function destroy($id){
         $deletedExtracurricular = Extracurricular::findOrFail($id);
-        $deletedStudentExtracurricular = StudentExtracurricular::whereIn('extracurricular_id', [$id])->get();
-
-        foreach ($deletedStudentExtracurricular as $data) {
-            StudentExtracurricular::where('extracurricular_id', $id)->delete();
-        }
         $deletedExtracurricular->delete();
 
         if($deletedExtracurricular){
             Session::flash('status', 'succes');
             Session::flash('message', 'hapus data extracurricular succes!');
+        }
+        return redirect('/extracurricular');
+    }
+
+    public function deleted(){
+        $deletedExtracurricular = Extracurricular::onlyTrashed()->get();
+
+        return view('extracurricular-deleted-list', ['extracurricular' => $deletedExtracurricular]);
+    }
+
+    public function restore($id){
+        $deletedExtracurricular = Extracurricular::withTrashed()->where('id', $id)->restore();
+
+        if($deletedExtracurricular){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'restore data extracurricular succes!');
         }
         return redirect('/extracurricular');
     }
