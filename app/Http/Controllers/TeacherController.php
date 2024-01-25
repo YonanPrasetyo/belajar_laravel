@@ -62,7 +62,7 @@ class TeacherController extends Controller
     public function destroy($id){
         $deletedTeacher = Teacher::findOrFail($id);
 
-        if ($deletedTeacher->class() != NULL) {
+        if ($deletedTeacher->class()->count() > 0) {
             Session::flash('status', 'succes');
             Session::flash('message', 'hapus data teacher GAGAL!');
             return redirect('/teacher');
@@ -74,9 +74,21 @@ class TeacherController extends Controller
             }
             return redirect('/teacher');
         }
+    }
 
+    public function deleted(){
+        $deletedTeacher = Teacher::onlyTrashed()->get();
 
+        return view('teacher-deleted-list', ['teacher' => $deletedTeacher]);
+    }
 
+    public function restore($id){
+        $deletedTeacher = Teacher::withTrashed()->where('id', $id)->restore();
 
+        if($deletedTeacher){
+            Session::flash('status', 'succes');
+            Session::flash('message', 'restore data teacher succes!');
+        }
+        return redirect('/teacher');
     }
 }
