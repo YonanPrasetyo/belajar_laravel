@@ -5,8 +5,18 @@
 @section('content')
 <h1>Ini Halaman Student</h1>
 <strong>Student List</strong>
-<a href="/student-add" class="btn btn-primary">Add Data</a>
-<a href="/student-deleted" class="btn btn-primary">Show Deleted Data</a>
+<div class="d-flex justify-content-between">
+    <form action="" method="get" class="" style="display: flex">
+        <div class="input-group mb-3 w-auto" >
+            <input type="text" class="form-control" name="keyword" placeholder="Keyword">
+            <button class="input-group-text btn btn-primary">Cari</button>
+        </div>
+    </form>
+    <div>
+        <a href="/student-add" class="btn btn-primary ms-2">Add Data</a>
+        <a href="/student-deleted" class="btn btn-primary ms-2">Show Deleted Data</a>
+    </div>
+</div>
 
 @if (Session::has('status'))
     <div class="alert alert-success" role="alert">
@@ -21,6 +31,7 @@
             <th>Nama</th>
             <th>gender</th>
             <th>nis</th>
+            <th>kelas</th>
             <th>action</th>
         </tr>
     </thead>
@@ -31,6 +42,7 @@
             <td>{{$data -> name}}</td>
             <td>{{$data -> gender}}</td>
             <td>{{$data -> nis}}</td>
+            <td>{{$data -> class -> name}}</td>
             <td>
                 <a href="/student/{{$data -> id}}" class="btn btn-primary">detail</a>
                 <a href="/student-edit/{{$data -> id}}" class="btn btn-primary">edit</a>
@@ -42,6 +54,6 @@
 </table>
 
 <div class="my-5">
-    {{$studentList->links()}}
+    {{$studentList->withQueryString()->links()}}
 </div>
 @endsection
