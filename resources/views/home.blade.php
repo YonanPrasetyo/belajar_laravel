@@ -4,5 +4,5 @@
 
 @section('content')
 <h1>Ini Halaman Home</h1>
-<h2>Selamat Datang {{$name}}. Anda Adalah {{$role}}</h2>
+<h2>Selamat Datang {{Auth::user()-> name}}. Anda Adalah {{Auth::user()-> role -> name}}</h2>
 @endsection
