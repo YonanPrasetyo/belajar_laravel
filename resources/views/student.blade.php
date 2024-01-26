@@ -5,6 +5,7 @@
 @section('content')
 <h1>Ini Halaman Student</h1>
 <strong>Student List</strong>
+
 <div class="d-flex justify-content-between">
     <form action="" method="get" class="" style="display: flex">
         <div class="input-group mb-3 w-auto" >
@@ -13,8 +14,16 @@
         </div>
     </form>
     <div>
-        <a href="/student-add" class="btn btn-primary ms-2">Add Data</a>
-        <a href="/student-deleted" class="btn btn-primary ms-2">Show Deleted Data</a>
+        @if (Auth::user()->role_id != 1 && Auth::user()->role_id != 2)
+
+        @else
+        <a href="/student-add" class="btn btn-primary">Add Data</a>
+        @endif
+        @if (Auth::user()->role_id != 1)
+
+        @else
+        <a href="/student-deleted" class="btn btn-primary">Show Deleted Data</a>
+        @endif
     </div>
 </div>
 
@@ -32,7 +41,11 @@
             <th>gender</th>
             <th>nis</th>
             <th>kelas</th>
+            @if (Auth::user()->role_id != 1 && Auth::user()->role_id != 2)
+
+            @else
             <th>action</th>
+            @endif
         </tr>
     </thead>
     <tbody>
@@ -43,11 +56,19 @@
             <td>{{$data -> gender}}</td>
             <td>{{$data -> nis}}</td>
             <td>{{$data -> class -> name}}</td>
+            @if (Auth::user()->role_id != 1 && Auth::user()->role_id != 2)
+
+            @else
             <td>
                 <a href="/student/{{$data -> id}}" class="btn btn-primary">detail</a>
                 <a href="/student-edit/{{$data -> id}}" class="btn btn-primary">edit</a>
+                @if (Auth::user()->role_id != 1)
+
+                @else
                 <a href="/student-delete/{{$data -> id}}" class="btn btn-danger">delete</a>
+                @endif
             </td>
+            @endif
         </tr>
     @endforeach
     </tbody>
