@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="student" method="post">
+    <form action="student" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-grup mb-3">
             <label for="name">Nama</label>
@@ -47,11 +47,16 @@
             </select>
         </div>
 
+        <label for="photo">Foto</label>
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" name="photo" id="photo">
+        </div>
+
         <div class="form-grup mb-3">
             <label for="extracurricular">Ekstrakulikuler</label><br>
             @foreach ($extracurricular as $data)
-                <input type="checkbox" name="extracurricular_id[]" id="extracurricular{{$data -> id}}">
-                <label for="extracurricular{{$data -> id}}">{{$data -> name}}</label><br>
+            <input type="checkbox" name="extracurricular_id[]" id="extracurricular{{$data -> id}}">
+            <label for="extracurricular{{$data -> id}}">{{$data -> name}}</label><br>
             @endforeach
         </div>
 

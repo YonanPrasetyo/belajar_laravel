@@ -17,7 +17,7 @@ class Student extends Model
     // public $timestamps = false; -- gak perlu karena sudah ada created_at dan updated_at pada tabel
 
     protected $fillable = [
-        'name', 'gender', 'nis', 'class_id'
+        'name', 'gender', 'nis', 'class_id', 'image'
     ];
 
     public function class()
